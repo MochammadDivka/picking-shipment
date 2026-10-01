@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased bg-zinc-50 text-zinc-900 font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Minimalist scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* ========================================================================= */
+/* CSS PRINT SETUP UNTUK JAMINAN 1 HALAMAN A4 PORTRAIT                       */
+/* ========================================================================= */
+@page {
+  size: A4 portrait;
+  margin: 6mm 8mm 6mm 8mm;
+}
+
+@media print {
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Sembunyikan seluruh UI navigasi, form, modal dialog, overlay, dan panel kontrol */
+  .no-print,
+  [role="dialog"],
+  header,
+  footer,
+  aside,
+  button,
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Area Khusus Print */
+  #print-root {
+    display: block !important;
+    width: 194mm !important;
+    max-width: 194mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  /* Cegah tabel dan baris terpotong */
+  table, tr, td, th {
+    page-break-inside: avoid !important;
+  }
+
+  /* Pastikan border tabel hitam tajam */
+  table {
+    border-color: #000000 !important;
+  }
+
+  td, th {
+    border-color: #333333 !important;
+  }
+}
+
+@media screen {
+  #print-root {
+    display: none;
+  }
+}
